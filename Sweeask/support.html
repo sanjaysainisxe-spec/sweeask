@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Support Sweeask | Keep it Free</title>
+<meta name="description" content="Sweeask is free forever. Support the project through donations, bug reports, or spreading the word."/>
+<link rel="icon" type="image/png" href="favicon.png"/>
+<link rel="manifest" href="manifest.json"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.donate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.donate-card{background:var(--card-bg);border:1px solid var(--border2);border-radius:20px;padding:32px;backdrop-filter:blur(12px);transition:all 0.25s;text-align:center;position:relative;overflow:hidden}
+.donate-card:hover{border-color:var(--border);box-shadow:var(--shadow);transform:translateY(-5px)}
+.donate-card.featured{border-color:var(--pri);box-shadow:0 0 0 1px var(--pri),var(--shadow)}
+.dc-badge{position:absolute;top:16px;right:16px;font-size:10px;font-weight:800;padding:3px 10px;border-radius:5px;text-transform:uppercase;letter-spacing:0.5px;background:var(--pri);color:#fff}
+.dc-icon{font-size:48px;margin-bottom:16px;display:block}
+.donate-card h3{font-size:1.2rem;margin-bottom:10px;color:var(--t1)}
+.donate-card p{font-size:13px;color:var(--t3);margin-bottom:22px;line-height:1.65}
+.donate-card .btn{width:100%;justify-content:center}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.impact-card{background:var(--card-bg);border:1px solid var(--border2);border-radius:14px;padding:22px;text-align:center;transition:all 0.2s}
+.impact-card:hover{border-color:var(--border);box-shadow:var(--shadow2)}
+.ic-icon{font-size:32px;margin-bottom:10px;display:block}
+.ic-amount{font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:900;color:var(--pri3);line-height:1}
+.ic-label{font-size:12px;color:var(--t3);margin-top:4px}
+.faq-list{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--card-bg);border:1px solid var(--border2);border-radius:13px;overflow:hidden;transition:all 0.2s}
+.faq-item:hover{border-color:var(--border)}
+.faq-q{width:100%;background:none;border:none;padding:18px 20px;text-align:left;font-family:inherit;font-size:14px;font-weight:700;color:var(--t1);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.faq-icon{font-size:18px;transition:transform 0.2s;flex-shrink:0;color:var(--t3)}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--pri3)}
+.faq-a{display:none;padding:0 20px 18px;font-size:13px;color:var(--t3);line-height:1.7}
+.faq-item.open .faq-a{display:block}
+.contrib-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px}
+.contrib-card{background:var(--card-bg);border:1px solid var(--border2);border-radius:16px;padding:28px;display:flex;gap:18px;align-items:flex-start;transition:all 0.25s}
+.contrib-card:hover{border-color:var(--border);box-shadow:var(--shadow)}
+.contrib-icon{font-size:32px;flex-shrink:0}
+.contrib-card h4{font-size:1rem;color:var(--t1);margin-bottom:6px}
+.contrib-card p{font-size:13px;color:var(--t3);margin-bottom:14px;line-height:1.6}
+@media(max-width:860px){.donate-grid{grid-template-columns:1fr}.impact-grid{grid-template-columns:repeat(2,1fr)}.contrib-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.impact-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body class="page-body">
+
+<header class="main-header" id="main-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><img src="favicon.png" alt="Sweeask"/><span>Sweeask</span></a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a><a href="app.html">App</a>
+      <a href="updates.html">Updates</a><a href="about.html">Vision</a>
+      <a href="support.html" class="active">Support</a>
+    </nav>
+    <div class="header-actions">
+      <div class="theme-toggle">
+        <button class="tt-btn active" data-theme-btn="default">🌌</button>
+        <button class="tt-btn" data-theme-btn="dark">🌑</button>
+        <button class="tt-btn" data-theme-btn="light">☀️</button>
+      </div>
+      <a href="app.html" class="btn btn-sm btn-p">Open App →</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a><a href="app.html">App</a><a href="updates.html">Updates</a>
+  <a href="about.html">Vision</a><a href="support.html" class="active">Support</a>
+  <div class="mobile-theme-row"><span>Theme:</span>
+    <button class="tt-btn active" data-theme-btn="default">🌌</button>
+    <button class="tt-btn" data-theme-btn="dark">🌑</button>
+    <button class="tt-btn" data-theme-btn="light">☀️</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero" style="padding:100px 0 70px">
+  <div class="container" style="position:relative;z-index:1">
+    <span class="badge anim-fade-up">❤️ Keep it Free</span>
+    <h1 class="anim-fade-up anim-delay-1">Help Us Keep<br/>Sweeask Free</h1>
+    <p class="anim-fade-up anim-delay-2" style="margin-top:16px;max-width:520px;margin-left:auto;margin-right:auto">Sweeask is and will always be free. But servers, domain names, and development time have real costs. Every contribution — no matter how small — directly keeps this project alive.</p>
+  </div>
+  <div style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden">
+    <div style="position:absolute;width:500px;height:500px;top:-100px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(124,58,237,0.18) 0%,transparent 65%);filter:blur(60px)"></div>
+  </div>
+</section>
+
+<!-- DONATION OPTIONS -->
+<section class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="badge">💰 Choose Your Way</span>
+      <h2 style="margin-top:14px">Ways to support</h2>
+    </div>
+    <div class="donate-grid">
+      <div class="donate-card reveal anim-delay-1">
+        <span class="dc-icon">☕</span>
+        <h3>Buy a Coffee</h3>
+        <p>A one-time donation that covers a few hours of development or a month of the domain. Every coffee counts.</p>
+        <a href="https://www.buymeacoffee.com/" target="_blank" class="btn btn-g">☕ Buy Me a Coffee</a>
+      </div>
+      <div class="donate-card featured reveal anim-delay-2">
+        <div class="dc-badge">Most Helpful</div>
+        <span class="dc-icon">⭐</span>
+        <h3>Star on GitHub</h3>
+        <p>It's completely free and takes 5 seconds. Stars help other developers and students discover Sweeask and keep the open-source spirit alive.</p>
+        <a href="https://github.com/sanjaysainisxe-spec/sweeask" target="_blank" class="btn btn-p">⭐ Star the Repo</a>
+      </div>
+      <div class="donate-card reveal anim-delay-3">
+        <span class="dc-icon">🐛</span>
+        <h3>Report a Bug</h3>
+        <p>Found something broken? A detailed bug report saves hours of debugging. Open a GitHub issue with steps to reproduce.</p>
+        <a href="https://github.com/sanjaysainisxe-spec/sweeask/issues" target="_blank" class="btn btn-g">Report on GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE MONEY GOES -->
+<section class="section" style="background:var(--bg2)">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="badge">📊 Transparency</span>
+      <h2 style="margin-top:14px">Where does support go?</h2>
+      <p style="max-width:480px;margin:14px auto 0">100% of donations go directly to the project. No salaries. No overhead. Here's what it funds:</p>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card reveal anim-delay-1">
+        <span class="ic-icon">🌐</span>
+        <div class="ic-amount">Domain</div>
+        <div class="ic-label">sweeask.com hosting & DNS</div>
+      </div>
+      <div class="impact-card reveal anim-delay-2">
+        <span class="ic-icon">⚡</span>
+        <div class="ic-amount">CDN</div>
+        <div class="ic-label">Fast asset delivery worldwide</div>
+      </div>
+      <div class="impact-card reveal anim-delay-3">
+        <span class="ic-icon">🛠️</span>
+        <div class="ic-amount">Dev Time</div>
+        <div class="ic-label">Building new features & fixes</div>
+      </div>
+      <div class="impact-card reveal anim-delay-4">
+        <span class="ic-icon">📚</span>
+        <div class="ic-amount">Tools</div>
+        <div class="ic-label">Design & development resources</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OTHER CONTRIBUTIONS -->
+<section class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="badge">🤝 Non-Financial Help</span>
+      <h2 style="margin-top:14px">Can't donate? Still help!</h2>
+      <p style="max-width:480px;margin:14px auto 0">Money isn't the only way to contribute. These actions are just as valuable to the project.</p>
+    </div>
+    <div class="contrib-grid">
+      <div class="contrib-card reveal anim-delay-1">
+        <span class="contrib-icon">🐛</span>
+        <div>
+          <h4>Report Bugs</h4>
+          <p>Detailed bug reports are gold. If something breaks, open an issue on GitHub with your browser, OS, and steps to reproduce.</p>
+          <a href="https://github.com/sanjaysainisxe-spec/sweeask/issues" target="_blank" class="btn btn-sm btn-g">Open an Issue →</a>
+        </div>
+      </div>
+      <div class="contrib-card reveal anim-delay-2">
+        <span class="contrib-icon">💡</span>
+        <div>
+          <h4>Suggest Features</h4>
+          <p>Have an idea for a feature that would make your workflow better? Submit it as a GitHub discussion and the community can vote on it.</p>
+          <a href="https://github.com/sanjaysainisxe-spec/sweeask/discussions" target="_blank" class="btn btn-sm btn-g">Start a Discussion →</a>
+        </div>
+      </div>
+      <div class="contrib-card reveal anim-delay-3">
+        <span class="contrib-icon">🔀</span>
+        <div>
+          <h4>Submit a Pull Request</h4>
+          <p>If you're a developer, fork the repo and submit improvements directly. All contributions — big or small — are reviewed and welcomed.</p>
+          <a href="https://github.com/sanjaysainisxe-spec/sweeask/fork" target="_blank" class="btn btn-sm btn-g">Fork on GitHub →</a>
+        </div>
+      </div>
+      <div class="contrib-card reveal anim-delay-4">
+        <span class="contrib-icon">📢</span>
+        <div>
+          <h4>Spread the Word</h4>
+          <p>Share Sweeask with a classmate, colleague, or community. Every new user who finds it useful makes the project more worth building.</p>
+          <button class="btn btn-sm btn-g" onclick="share()">Share Sweeask →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--bg2)">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:48px">
+      <span class="badge">❓ FAQ</span>
+      <h2 style="margin-top:14px">Common Questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Will Sweeask ever charge a subscription fee?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">No. Sweeask is committed to being free forever. The core app — all features, all views, all data — will never require payment. Donations are entirely optional and only exist to sustain the project's existence.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you sell my data?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">We have no access to your data. Everything is stored in your browser's localStorage. We have no servers, no database, and no analytics that track individual users. We cannot sell what we cannot see.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if I stop donating?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Nothing changes. You keep full access to everything. Donations are a choice, not a gate. If we ever reached a point where the project couldn't be sustained, we would open-source everything so the community could fork and continue it.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is this actually open source?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Yes. The full source code is available on GitHub. You can read it, fork it, modify it, and run your own version. The repository link is in the footer.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What's the best way to help if I have no money?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Star the repo on GitHub. It's free and it's genuinely the single most impactful action you can take. Stars make the project more discoverable and signal to the open-source community that it's worth using.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="main-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="margin-bottom:14px"><img src="favicon.png" alt="Sweeask" width="28"/><span>Sweeask</span></a>
+        <p>Free, open-source, offline-first productivity. Your data stays on your device. Always.</p>
+      </div>
+      <div class="footer-col"><h4>App</h4><a href="app.html">Open App</a><a href="TaskTracker-Pro-v3.html" download>Download Offline</a><a href="updates.html">Changelog</a></div>
+      <div class="footer-col"><h4>Project</h4><a href="about.html">Our Vision</a><a href="support.html">Support Us</a><a href="https://github.com/sanjaysainisxe-spec/sweeask" target="_blank">Open Source</a></div>
+      <div class="footer-col"><h4>Connect</h4><a href="https://github.com/sanjaysainisxe-spec/sweeask" target="_blank">GitHub</a><a href="https://github.com/sanjaysainisxe-spec/sweeask/issues" target="_blank">Report Bug</a><a href="support.html">Donate</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Sweeask · Free &amp; Open Source · v1.1.0</p>
+      <div class="footer-links"><a href="about.html">About</a><a href="support.html">Donate</a><a href="https://github.com/sanjaysainisxe-spec/sweeask" target="_blank">GitHub</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+var THEME_KEY='sweeask-theme';
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem(THEME_KEY,t);document.querySelectorAll('[data-theme-btn]').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-theme-btn')===t);});}
+document.querySelectorAll('[data-theme-btn]').forEach(function(b){b.addEventListener('click',function(){setTheme(this.getAttribute('data-theme-btn'));});});
+setTheme(localStorage.getItem(THEME_KEY)||'default');
+document.getElementById('hamburger').addEventListener('click',function(){document.getElementById('mobileNav').classList.toggle('open');});
+var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+function toggleFaq(btn){
+  var item=btn.closest('.faq-item');
+  var wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});
+  if(!wasOpen)item.classList.add('open');
+}
+function share(){
+  if(navigator.share){
+    navigator.share({title:'Sweeask',text:'Free offline-first task tracker — no login, no ads.',url:window.location.origin});
+  } else {
+    navigator.clipboard.writeText(window.location.origin).then(function(){
+      alert('Link copied to clipboard!');
+    });
+  }
+}
+</script>
+</body>
+</html>

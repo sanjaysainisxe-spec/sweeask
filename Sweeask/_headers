@@ -1,0 +1,41 @@
+# Sweeask — Security & Performance Headers
+# Works on Netlify automatically.
+# For GitHub Pages, these are applied via the deploy workflow.
+
+/*
+  # Security
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+  # PWA theme color
+  Theme-Color: #7C3AED
+
+  # Performance
+  X-DNS-Prefetch-Control: on
+
+# Cache static assets aggressively
+/style.css
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/app.js
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/components.js
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/*.png
+  Cache-Control: public, max-age=2592000, immutable
+
+/manifest.json
+  Cache-Control: public, max-age=86400
+
+# Service worker must not be cached
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# HTML pages — short cache, always revalidate
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate

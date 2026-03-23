@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>404 — Page Not Found | Sweeask</title>
+<link rel="icon" type="image/png" href="favicon.png"/>
+<link rel="manifest" href="manifest.json"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--hero-grad);
+  position: relative;
+  overflow: hidden;
+  padding: 80px 24px;
+}
+.not-found-page::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 65%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+.nf-inner {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+}
+.nf-code {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(6rem, 20vw, 10rem);
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--pri), var(--pri3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+  animation: float 4s ease-in-out infinite;
+}
+.nf-emoji {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 20px;
+  animation: float 4s ease-in-out 0.5s infinite;
+}
+.nf-inner h2 {
+  font-size: 1.6rem;
+  color: var(--t1);
+  margin-bottom: 12px;
+}
+.nf-inner p {
+  font-size: 1rem;
+  color: var(--t2);
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+.nf-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.nf-suggestions {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  text-align: left;
+}
+.nf-sug {
+  background: var(--card-bg);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: all 0.2s;
+  backdrop-filter: blur(10px);
+}
+.nf-sug:hover {
+  border-color: var(--border);
+  box-shadow: var(--shadow2);
+  transform: translateY(-2px);
+}
+.nf-sug-icon { font-size: 22px; flex-shrink: 0; }
+.nf-sug-label { font-size: 13px; font-weight: 700; color: var(--t1); }
+.nf-sug-sub   { font-size: 11px; color: var(--t3); margin-top: 2px; }
+/* countdown */
+.nf-redirect {
+  margin-top: 28px;
+  font-size: 12px;
+  color: var(--t4);
+}
+#nf-count { color: var(--pri3); font-weight: 800; }
+@media(max-width:480px) {
+  .nf-suggestions { grid-template-columns: 1fr; }
+  .nf-actions { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="main-header" id="main-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><img src="favicon.png" alt="Sweeask"/><span>Sweeask</span></a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="app.html">App</a>
+      <a href="updates.html">Updates</a>
+      <a href="about.html">Vision</a>
+      <a href="support.html">Support</a>
+    </nav>
+    <div class="header-actions">
+      <div class="theme-toggle">
+        <button class="tt-btn active" data-theme-btn="default">🌌</button>
+        <button class="tt-btn" data-theme-btn="dark">🌑</button>
+        <button class="tt-btn" data-theme-btn="light">☀️</button>
+      </div>
+      <a href="app.html" class="btn btn-sm btn-p">Open App →</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a><a href="app.html">App</a>
+  <a href="updates.html">Updates</a><a href="about.html">Vision</a><a href="support.html">Support</a>
+  <div class="mobile-theme-row"><span>Theme:</span>
+    <button class="tt-btn active" data-theme-btn="default">🌌</button>
+    <button class="tt-btn" data-theme-btn="dark">🌑</button>
+    <button class="tt-btn" data-theme-btn="light">☀️</button>
+  </div>
+</nav>
+
+<div class="not-found-page">
+  <div class="nf-inner">
+    <div class="nf-code">404</div>
+    <span class="nf-emoji">🔍</span>
+    <h2>This page doesn't exist</h2>
+    <p>The page you're looking for may have been moved, renamed, or never existed. But your tasks are safe — all data lives on your device.</p>
+    <div class="nf-actions">
+      <a href="index.html" class="btn btn-p btn-lg">← Back to Home</a>
+      <a href="app.html"   class="btn btn-g btn-lg">Open App →</a>
+    </div>
+    <div class="nf-suggestions">
+      <a href="index.html" class="nf-sug">
+        <span class="nf-sug-icon">🏠</span>
+        <div><div class="nf-sug-label">Home</div><div class="nf-sug-sub">Sweeask landing page</div></div>
+      </a>
+      <a href="app.html" class="nf-sug">
+        <span class="nf-sug-icon">✅</span>
+        <div><div class="nf-sug-label">App</div><div class="nf-sug-sub">Open the task tracker</div></div>
+      </a>
+      <a href="updates.html" class="nf-sug">
+        <span class="nf-sug-icon">🆕</span>
+        <div><div class="nf-sug-label">Updates</div><div class="nf-sug-sub">See what's new</div></div>
+      </a>
+      <a href="support.html" class="nf-sug">
+        <span class="nf-sug-icon">❤️</span>
+        <div><div class="nf-sug-label">Support</div><div class="nf-sug-sub">Help keep it free</div></div>
+      </a>
+    </div>
+    <div class="nf-redirect">Redirecting to home in <span id="nf-count">10</span>s</div>
+  </div>
+</div>
+
+<script>
+var THEME_KEY='sweeask-theme';
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem(THEME_KEY,t);document.querySelectorAll('[data-theme-btn]').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-theme-btn')===t);});}
+document.querySelectorAll('[data-theme-btn]').forEach(function(b){b.addEventListener('click',function(){setTheme(this.getAttribute('data-theme-btn'));});});
+setTheme(localStorage.getItem(THEME_KEY)||'default');
+document.getElementById('hamburger').addEventListener('click',function(){document.getElementById('mobileNav').classList.toggle('open');});
+// Countdown redirect
+var count = 10;
+var countEl = document.getElementById('nf-count');
+var timer = setInterval(function() {
+  count--;
+  if (countEl) countEl.textContent = count;
+  if (count <= 0) { clearInterval(timer); window.location.href = 'index.html'; }
+}, 1000);
+// Cancel redirect on user interaction
+document.addEventListener('click', function() { clearInterval(timer); if(countEl)countEl.closest('.nf-redirect').style.display='none'; }, {once:true});
+</script>
+</body>
+</html>

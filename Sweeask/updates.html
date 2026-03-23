@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Updates & Changelog | Sweeask</title>
+<link rel="icon" type="image/png" href="favicon.png"/>
+<link rel="manifest" href="manifest.json"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.updates-wrap{max-width:820px;margin:0 auto}
+.update-card{background:var(--card-bg);border:1px solid var(--border2);border-radius:18px;margin-bottom:20px;overflow:hidden;backdrop-filter:blur(12px);transition:border-color 0.2s}
+.update-card:hover{border-color:var(--border)}
+.update-card.latest{border-color:var(--pri);box-shadow:0 0 0 1px var(--pri),var(--shadow)}
+.uc-head{padding:22px 28px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;cursor:pointer;user-select:none}
+.uc-ver{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.vc-num{font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:900;color:var(--t1)}
+.vc-tag{font-size:10px;font-weight:800;padding:3px 10px;border-radius:5px;text-transform:uppercase;letter-spacing:0.5px}
+.vc-latest{background:var(--pri);color:#fff}
+.vc-stable{background:var(--acc-gl);color:var(--acc)}
+.vc-coming{background:rgba(255,255,255,0.06);color:var(--t4)}
+.uc-date{font-size:12px;color:var(--t3);margin-bottom:5px}
+.uc-title{font-size:1rem;font-weight:700;color:var(--t1)}
+.uc-desc{font-size:13px;color:var(--t3);margin-top:3px}
+.uc-toggle{font-size:20px;color:var(--t3);transition:transform 0.2s;flex-shrink:0;margin-top:2px}
+.update-card.open .uc-toggle{transform:rotate(45deg);color:var(--pri3)}
+.uc-body{border-top:1px solid var(--border2);padding:20px 28px;display:none}
+.update-card.open .uc-body{display:block}
+.cg2x{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:14px}
+.change-group h5{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px}
+.change-group ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:5px}
+.change-group li{font-size:13px;color:var(--t2);line-height:1.5;padding-left:14px;position:relative}
+.change-group li::before{content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%}
+.ch-new h5{color:var(--pri3)}.ch-new li::before{background:var(--pri3)}
+.ch-fix h5{color:var(--acc)}.ch-fix li::before{background:var(--acc)}
+.ch-improve h5{color:#F59E0B}.ch-improve li::before{background:#F59E0B}
+.uc-dl{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid var(--border2)}
+.vf-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.vf-btn{padding:7px 16px;border-radius:99px;border:1.5px solid var(--border2);background:none;font-family:inherit;font-size:12px;font-weight:700;color:var(--t3);cursor:pointer;transition:all 0.16s}
+.vf-btn.active,.vf-btn:hover{background:var(--pri-gl);border-color:var(--pri);color:var(--pri3)}
+.new-banner{background:linear-gradient(135deg,var(--pri-gl),rgba(168,85,247,0.04));border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.nb-icon{font-size:36px;flex-shrink:0}
+.nb-t h4{font-size:14px;font-weight:800;color:var(--t1);margin-bottom:4px}
+.nb-t p{font-size:13px;color:var(--t2)}
+@media(max-width:600px){.cg2x{grid-template-columns:1fr}}
+</style>
+</head>
+<body class="page-body">
+<header class="main-header" id="main-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><img src="favicon.png" alt="Sweeask"/><span>Sweeask</span></a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a><a href="app.html">App</a>
+      <a href="updates.html" class="active">Updates</a>
+      <a href="about.html">Vision</a><a href="support.html">Support</a>
+    </nav>
+    <div class="header-actions">
+      <div class="theme-toggle">
+        <button class="tt-btn active" data-theme-btn="default">🌌</button>
+        <button class="tt-btn" data-theme-btn="dark">🌑</button>
+        <button class="tt-btn" data-theme-btn="light">☀️</button>
+      </div>
+      <a href="app.html" class="btn btn-sm btn-p">Open App</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a><a href="app.html">App</a>
+  <a href="updates.html" class="active">Updates</a>
+  <a href="about.html">Vision</a><a href="support.html">Support</a>
+  <div class="mobile-theme-row"><span>Theme:</span>
+    <button class="tt-btn active" data-theme-btn="default">🌌</button>
+    <button class="tt-btn" data-theme-btn="dark">🌑</button>
+    <button class="tt-btn" data-theme-btn="light">☀️</button>
+  </div>
+</nav>
+
+<section class="page-hero" style="padding:100px 0 60px">
+  <div class="container" style="position:relative;z-index:1">
+    <span class="badge anim-fade-up">📋 Changelog</span>
+    <h1 class="anim-fade-up anim-delay-1">What's New</h1>
+    <p class="anim-fade-up anim-delay-2" style="margin-top:14px;max-width:500px;margin-left:auto;margin-right:auto">Every release documented. Features, fixes, and what is coming next — all here.</p>
+  </div>
+  <div style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden"><div style="position:absolute;width:500px;height:400px;top:-80px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(124,58,237,0.15) 0%,transparent 65%);filter:blur(60px)"></div></div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="new-banner reveal">
+      <div class="nb-icon">🆕</div>
+      <div class="nb-t">
+        <h4>v1.2.0 is live — Command Palette, XP System, Templates, Settings</h4>
+        <p>Press <kbd style="background:var(--surface2);border:1px solid var(--border2);border-radius:4px;padding:1px 6px;font-size:12px">Ctrl+K</kbd> in the app to open the command palette.</p>
+      </div>
+      <a href="app.html" class="btn btn-p btn-sm" style="flex-shrink:0">Open App</a>
+    </div>
+    <div class="vf-btns reveal">
+      <button class="vf-btn active" onclick="filterUpdates('all',this)">All</button>
+      <button class="vf-btn" onclick="filterUpdates('stable',this)">Stable</button>
+      <button class="vf-btn" onclick="filterUpdates('coming',this)">Coming Soon</button>
+    </div>
+    <div class="updates-wrap">
+
+      <div class="update-card latest open" data-type="stable" data-id="v120">
+        <div class="uc-head" onclick="toggleUpdate('v120')">
+          <div>
+            <div class="uc-ver"><span class="vc-num">v1.2.0</span><span class="vc-tag vc-latest">Latest</span><span class="vc-tag vc-stable">Stable</span></div>
+            <div class="uc-date">March 2026</div>
+            <div class="uc-title">Command Palette · XP Gamification · 12 Templates · Settings Panel</div>
+            <div class="uc-desc">The biggest single update — a VS Code-style palette, earn XP for completing tasks, quick-start templates, and full settings.</div>
+          </div>
+          <span class="uc-toggle">+</span>
+        </div>
+        <div class="uc-body">
+          <div class="cg2x">
+            <div class="change-group ch-new"><h5>⌘ Command Palette</h5><ul>
+              <li>Ctrl+K opens palette from anywhere in the app</li>
+              <li>27 commands: views, themes, actions, navigation</li>
+              <li>Live task search as you type</li>
+              <li>Keyboard: arrow keys + Enter, Esc to close</li>
+            </ul></div>
+            <div class="change-group ch-new"><h5>🎮 XP and Levels</h5><ul>
+              <li>Complete tasks to earn XP (10–50 per task by priority)</li>
+              <li>Recurring tasks give +20% bonus XP</li>
+              <li>11 levels from Beginner to Grandmaster</li>
+              <li>Level-up banner animation on level increase</li>
+              <li>XP progress bar in sidebar</li>
+              <li>Skill tag field tracks XP per skill area</li>
+            </ul></div>
+          </div>
+          <div class="cg2x">
+            <div class="change-group ch-new"><h5>📋 Task Templates (12)</h5><ul>
+              <li>Morning Workout, Study Session, Code Review</li>
+              <li>Daily Standup, Weekly Review, YouTube Upload</li>
+              <li>Meditation, Reading, Run, Report, Ideas, Bills</li>
+              <li>One click to add with all fields pre-filled</li>
+            </ul></div>
+            <div class="change-group ch-new"><h5>⚙️ Settings Panel</h5><ul>
+              <li>Sound toggle and volume slider</li>
+              <li>Peak Focus Hours with live banner in Today view</li>
+              <li>XP system and level-up notification toggles</li>
+              <li>Export buttons, storage usage display</li>
+              <li>Clear all data option with confirmation</li>
+            </ul></div>
+          </div>
+          <div class="change-group ch-improve"><h5>🔧 Architecture</h5><ul style="display:grid;grid-template-columns:1fr 1fr;gap:4px 20px">
+            <li>Full task engine extracted to standalone app.js (67KB)</li>
+            <li>IIFE pattern — clean global scope management</li>
+            <li>New Skills and XP view in sidebar</li>
+            <li>Peak hours shown as ⚡ on task time badges</li>
+          </ul></div>
+          <div class="uc-dl">
+            <a href="app.html" class="btn btn-sm btn-p">Open v1.2.0</a>
+            <a href="TaskTracker-Pro-v3.html" download class="btn btn-sm btn-g">Download Offline</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="update-card" data-type="stable" data-id="v110">
+        <div class="uc-head" onclick="toggleUpdate('v110')">
+          <div>
+            <div class="uc-ver"><span class="vc-num">v1.1.0</span><span class="vc-tag vc-stable">Stable</span></div>
+            <div class="uc-date">February 2026</div>
+            <div class="uc-title">Recurring Tasks, Time Ranges, Weekly Grid, Monthly Table</div>
+            <div class="uc-desc">Auto-repeating tasks, start/end times, and new calendar views.</div>
+          </div>
+          <span class="uc-toggle">+</span>
+        </div>
+        <div class="uc-body">
+          <div class="cg2x">
+            <div class="change-group ch-new"><h5>🆕 New</h5><ul>
+              <li>Recurring: Daily, Weekday, Weekly, Monthly</li>
+              <li>Per-date completion tracking for recurring tasks</li>
+              <li>Start and end time fields on every task</li>
+              <li>Today view grouped by time of day</li>
+              <li>7-day weekly grid with clickable cards</li>
+              <li>Monthly table with daily task counts</li>
+            </ul></div>
+            <div class="change-group ch-fix"><h5>🐛 Fixes</h5><ul>
+              <li>Fixed JS syntax from onclick quote mixing</li>
+              <li>Fixed chart canvas reuse crash</li>
+              <li>Fixed esc() function missing brace</li>
+              <li>Fixed calendar overflow on mobile</li>
+            </ul></div>
+          </div>
+          <div class="uc-dl"><a href="TaskTracker-Pro-v3.html" download class="btn btn-sm btn-g">Download v1.1.0</a></div>
+        </div>
+      </div>
+
+      <div class="update-card" data-type="stable" data-id="v101">
+        <div class="uc-head" onclick="toggleUpdate('v101')">
+          <div>
+            <div class="uc-ver"><span class="vc-num">v1.0.1</span><span class="vc-tag vc-stable">Stable</span></div>
+            <div class="uc-date">January 2026</div>
+            <div class="uc-title">Pro Edition — 14 Views, Charts, Focus Timer, Sounds</div>
+          </div>
+          <span class="uc-toggle">+</span>
+        </div>
+        <div class="uc-body">
+          <div class="change-group ch-new"><h5>🆕 New</h5><ul style="display:grid;grid-template-columns:1fr 1fr;gap:4px 20px">
+            <li>14 sidebar views</li><li>Analytics with 5 chart types</li>
+            <li>Activity heatmap (84 days)</li><li>Pomodoro focus timer</li>
+            <li>Web Audio sound effects</li><li>Browser notifications</li>
+            <li>CSV export</li><li>Overdue task detection</li>
+          </ul></div>
+          <div class="uc-dl"><a href="TaskTracker-Pro-v2.html" download class="btn btn-sm btn-g">Download v1.0.1</a></div>
+        </div>
+      </div>
+
+      <div class="update-card" data-type="stable" data-id="v100">
+        <div class="uc-head" onclick="toggleUpdate('v100')">
+          <div>
+            <div class="uc-ver"><span class="vc-num">v1.0.0</span><span class="vc-tag vc-stable">Stable</span></div>
+            <div class="uc-date">January 2026</div>
+            <div class="uc-title">Initial Release — Core Task Tracker</div>
+          </div>
+          <span class="uc-toggle">+</span>
+        </div>
+        <div class="uc-body">
+          <div class="change-group ch-new"><h5>🆕 Launch</h5><ul style="display:grid;grid-template-columns:1fr 1fr;gap:4px 20px">
+            <li>Tasks with title, notes, date, time</li><li>Priority and type system</li>
+            <li>Weekly bar chart</li><li>localStorage persistence</li>
+            <li>Search and CSV export</li><li>Streak counter</li>
+          </ul></div>
+          <div class="uc-dl"><a href="task-tracker.html" download class="btn btn-sm btn-g">Download v1.0.0</a></div>
+        </div>
+      </div>
+
+      <div class="update-card" data-type="coming" data-id="v130">
+        <div class="uc-head" onclick="toggleUpdate('v130')">
+          <div>
+            <div class="uc-ver"><span class="vc-num">v1.3.0</span><span class="vc-tag vc-coming">Planned</span></div>
+            <div class="uc-title">Subtasks, Drag-and-drop Kanban, IndexedDB Storage</div>
+            <div class="uc-desc">Nested subtasks, drag kanban cards, and storage migration for unlimited capacity.</div>
+          </div>
+          <span class="uc-toggle">+</span>
+        </div>
+        <div class="uc-body">
+          <div class="cg2x">
+            <div class="change-group ch-new"><h5>🔮 Planned</h5><ul>
+              <li>Subtasks and checklists inside tasks</li>
+              <li>Drag-and-drop kanban reordering</li>
+              <li>IndexedDB storage (no 5MB limit)</li>
+              <li>Save your own custom templates</li>
+              <li>Bulk task actions</li>
+            </ul></div>
+            <div class="change-group ch-improve"><h5>⚡ Also Planned</h5><ul>
+              <li>Circadian UI — theme shifts with time of day</li>
+              <li>Actual vs estimated time tracking</li>
+              <li>Print and PDF export of weekly plan</li>
+              <li>Mobile swipe gestures</li>
+            </ul></div>
+          </div>
+          <div class="uc-dl"><a href="https://github.com/sanjaysainisxe-spec/sweeask/discussions" target="_blank" class="btn btn-sm btn-g">Vote on Features</a></div>
+        </div>
+      </div>
+
+      <div class="update-card" data-type="coming" data-id="v140">
+        <div class="uc-head" onclick="toggleUpdate('v140')">
+          <div>
+            <div class="uc-ver"><span class="vc-num">v1.4.0</span><span class="vc-tag vc-coming">Future</span></div>
+            <div class="uc-title">Local AI "Jimmy" — Offline NLP Task Creation</div>
+            <div class="uc-desc">Type in plain English. AI parses date, time, priority automatically. 100% offline via Transformers.js.</div>
+          </div>
+          <span class="uc-toggle">+</span>
+        </div>
+        <div class="uc-body">
+          <div class="cg2x">
+            <div class="change-group ch-new"><h5>🤖 Planned</h5><ul>
+              <li>Natural language input parsing</li>
+              <li>Runs via Transformers.js — fully offline</li>
+              <li>Predictive time estimates from your history</li>
+              <li>Auto-tagging from task description</li>
+              <li>Daily briefing summary</li>
+              <li>Anti-procrastination: splits avoided tasks into micro-steps</li>
+            </ul></div>
+            <div class="change-group ch-improve"><h5>🔬 Tech</h5><ul>
+              <li>~50MB model downloaded once, cached forever</li>
+              <li>Vector embeddings for semantic search</li>
+              <li>Zero data sent anywhere — fully private</li>
+            </ul></div>
+          </div>
+          <div class="uc-dl"><a href="https://github.com/sanjaysainisxe-spec/sweeask" target="_blank" class="btn btn-sm btn-g">Watch on GitHub</a></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="background:var(--card-bg);border:1px solid var(--border2);border-radius:16px;padding:28px;text-align:center;backdrop-filter:blur(12px);margin-top:20px" class="reveal">
+      <h3 style="margin-bottom:8px;color:var(--t1)">Stay updated</h3>
+      <p style="font-size:13px;color:var(--t3);margin-bottom:20px">Star the repo — GitHub notifies you of every release automatically.</p>
+      <a href="https://github.com/sanjaysainisxe-spec/sweeask" target="_blank" class="btn btn-p">Star on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer class="main-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="margin-bottom:14px"><img src="favicon.png" alt="Sweeask" width="28"/><span>Sweeask</span></a>
+        <p>Free, open-source, offline-first productivity. Your data stays on your device.</p>
+      </div>
+      <div class="footer-col"><h4>App</h4><a href="app.html">Open App</a><a href="TaskTracker-Pro-v3.html" download>Download</a><a href="updates.html">Changelog</a></div>
+      <div class="footer-col"><h4>Project</h4><a href="about.html">Vision</a><a href="support.html">Support</a><a href="https://github.com/sanjaysainisxe-spec/sweeask" target="_blank">GitHub</a></div>
+      <div class="footer-col"><h4>Connect</h4><a href="https://github.com/sanjaysainisxe-spec/sweeask/issues" target="_blank">Report Bug</a><a href="support.html">Donate</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p>2026 Sweeask · Free &amp; Open Source · v1.2.0</p>
+      <div class="footer-links"><a href="about.html">About</a><a href="support.html">Donate</a><a href="https://github.com/sanjaysainisxe-spec/sweeask" target="_blank">GitHub</a></div>
+    </div>
+  </div>
+</footer>
+<script>
+var TK='sweeask-theme';
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem(TK,t);document.querySelectorAll('[data-theme-btn]').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-theme-btn')===t);});}
+document.querySelectorAll('[data-theme-btn]').forEach(function(b){b.addEventListener('click',function(){setTheme(this.getAttribute('data-theme-btn'));});});
+setTheme(localStorage.getItem(TK)||'default');
+document.getElementById('hamburger').addEventListener('click',function(){document.getElementById('mobileNav').classList.toggle('open');});
+var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+function toggleUpdate(id){document.querySelector('[data-id="'+id+'"]').classList.toggle('open');}
+function filterUpdates(type,btn){document.querySelectorAll('.vf-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');document.querySelectorAll('.update-card').forEach(function(c){c.style.display=(type==='all'||c.getAttribute('data-type')===type)?'block':'none';});}
+</script>
+</body>
+</html>
