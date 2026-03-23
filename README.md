@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Sweeask Logo](/Sweeask/pwa-192x192.png)
+![Sweeask Logo](pwa-192x192.png)
 
 **Free. Private. For Everyone.**
 
