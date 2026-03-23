@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sweeask</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+<link rel="stylesheet" href="style.css"/>
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="preload" href="main.js" as="script">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<div class="app-container">
+  
+<div id="off" class="off">No internet detected — all data saved locally, fully offline</div>
+<div class="shell">
+<aside class="sb">
+  <div class="sb-logo"><div class="sb-ic">✅</div><div><div class="sb-name">TaskTracker
+</div><div class="sb-ver">Pro v3</div></div></div>
+  <div class="sb-sec">Views</div>
+  <button class="ni on" id="ni-today"     onclick="go('today')">📅 Today <span class="nb nb-g" id="nb-t">0</span></button>
+  <button class="ni"    id="ni-all"       onclick="go('all')">📋 All Tasks</button>
+  <button class="ni"    id="ni-recurring" onclick="go('recurring')">🔁 Recurring <span class="nb nb-o" id="nb-r">0</span></button>
+  <button class="ni"    id="ni-week"      onclick="go('week')">📆 This Week</button>
+  <button class="ni"    id="ni-month"     onclick="go('month')">🗓️ Monthly Grid</button>
+  <button class="ni"    id="ni-calendar"  onclick="go('calendar')">📅 Calendar</button>
+  <div class="sb-sec">Types</div>
+  <button class="ni" id="ni-events"    onclick="go('events')">📅 Events</button>
+  <button class="ni" id="ni-meetings"  onclick="go('meetings')">👥 Meetings</button>
+  <button class="ni" id="ni-deadlines" onclick="go('deadlines')">🚨 Deadlines <span class="nb nb-r" id="nb-d">0</span></button>
+  <button class="ni" id="ni-habits"    onclick="go('habits')">🌿 Habits</button>
+  <div class="sb-sec">Priority</div>
+  <button class="ni" id="ni-high"   onclick="go('high')">🔴 High <span class="nb nb-r" id="nb-h">0</span></button>
+  <button class="ni" id="ni-medium" onclick="go('medium')">🟡 Medium</button>
+  <button class="ni" id="ni-low"    onclick="go('low')">🟢 Low</button>
+  <div class="sb-sec">Tools</div>
+  <button class="ni" id="ni-analytics" onclick="go('analytics')">📊 Analytics</button>
+  <button class="ni" id="ni-heatmap"   onclick="go('heatmap')">🟩 Heatmap</button>
+  <button class="ni" id="ni-focus"     onclick="go('focus')">⏱️ Focus Timer</button>
+  <div class="sb-div"></div>
+  <button class="ni" onclick="expCSV()">📥 Export CSV</button>
+  <div class="sb-bot"><div class="streak-box">
+    <div class="sk-lbl">🔥 Streak</div>
+    <div class="sk-num" id="sk-n">0</div>
+    <div class="sk-sub">days in a row</div>
+  </div></div>
+</aside>
+<div class="main">
+  <div class="topbar">
+    <div class="tb-l"><h2 id="pg-t">Today</h2><p id="pg-s"></p></div>
+    <div class="tb-r">
+      <div class="sw">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" class="si" id="srch" placeholder="Search tasks…" oninput="render()"/>
+      </div>
+      <button class="btn btn-p" onclick="toggleForm()">+ Add Task</button>
+      <button class="btn btn-g" style="padding:8px 10px" onclick="reqNotif()" title="Enable notifications">🔔</button>
+    </div>
+  </div>
+  <div class="content">
+    <div id="af" class="af" style="display:none">
+      <div class="af-top">
+        <span class="af-title">✦ Add New Task</span>
+        <button onclick="toggleForm()" style="background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px;line-height:1">×</button>
+      </div>
+      <div class="fg">
+        <div class="fg-g full"><div class="fl">Task Title *</div>
+          <input class="field" id="f-title" type="text" placeholder="What needs to be done?" onkeydown="if(event.key==='Enter')addTask()"/></div>
+        <div class="fg-g full"><div class="fl">Notes</div>
+          <textarea class="field" id="f-note" placeholder="Details, links, context…"></textarea></div>
+        <div class="fg-g full"><div class="fl">Type</div><div class="pill-row">
+          <button class="pill on-type" id="pt-Task"     onclick="sType('Task')">📋 Task</button>
+          <button class="pill"         id="pt-Event"    onclick="sType('Event')">📅 Event</button>
+          <button class="pill"         id="pt-Meeting"  onclick="sType('Meeting')">👥 Meeting</button>
+          <button class="pill"         id="pt-Deadline" onclick="sType('Deadline')">🚨 Deadline</button>
+          <button class="pill"         id="pt-Habit"    onclick="sType('Habit')">🌿 Habit</button>
+        </div></div>
+        <div class="fg-g full"><div class="fl">Priority</div><div class="pill-row">
+          <button class="pill on-low" id="pp-Low"  onclick="sPrio('Low')">🟢 Low</button>
+          <button class="pill"        id="pp-Med"  onclick="sPrio('Med')">🟡 Medium</button>
+          <button class="pill"        id="pp-High" onclick="sPrio('High')">🔴 High</button>
+          <button class="pill"        id="pp-Crit" onclick="sPrio('Crit')">🔥 Critical</button>
+        </div></div>
+        <div class="fg-g full"><div class="fl">🔁 Recurrence — auto-repeating tasks</div><div class="pill-row">
+          <button class="pill on-stat" id="pr-none"    onclick="sRecur('none')">⛔ One-time</button>
+          <button class="pill"         id="pr-daily"   onclick="sRecur('daily')">🔁 Every Day</button>
+          <button class="pill"         id="pr-weekday" onclick="sRecur('weekday')">💼 Weekdays</button>
+          <button class="pill"         id="pr-weekly"  onclick="sRecur('weekly')">📅 Weekly</button>
+          <button class="pill"         id="pr-monthly" onclick="sRecur('monthly')">🗓️ Monthly</button>
+        </div></div>
+        <div class="fg-g full"><div class="fl">Status</div><div class="pill-row">
+          <button class="pill on-stat" id="ps-Todo"     onclick="sStat('Todo')">📋 Todo</button>
+          <button class="pill"         id="ps-Progress" onclick="sStat('Progress')">⚡ In Progress</button>
+          <button class="pill"         id="ps-Done"     onclick="sStat('Done')">✅ Done</button>
+          <button class="pill"         id="ps-Blocked"  onclick="sStat('Blocked')">🚫 Blocked</button>
+        </div></div>
+        <div class="fg-g"><div class="fl">Date</div><input class="field" id="f-date" type="date"/></div>
+        <div class="fg-g"><div class="fl">Start Time (3pm = 15:00)</div><input class="field" id="f-tstart" type="time"/></div>
+        <div class="fg-g"><div class="fl">End Time</div><input class="field" id="f-tend" type="time"/></div>
+        <div class="fg-g"><div class="fl">Tag / Label</div><input class="field" id="f-tag" type="text" placeholder="Work, Health, Study…"/></div>
+        <div class="fg-g"><div class="fl">Est. Minutes</div><input class="field" id="f-est" type="number" placeholder="e.g. 45" min="1"/></div>
+        <div class="fg-g"><div class="fl">Status (dropdown)</div><select class="field" id="f-stat2">
+          <option value="Todo">📋 Todo</option><option value="Progress">⚡ In Progress</option>
+          <option value="Done">✅ Done</option><option value="Blocked">🚫 Blocked</option>
+        </select></div>
+        <div class="fa-row">
+          <button class="btn-add" onclick="addTask()">+ Add Task</button>
+          <button class="btn-cancel" onclick="toggleForm()">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <div id="v-today"></div>
+    <div id="v-all" style="display:none"></div>
+    <div id="v-recurring" style="display:none"></div>
+    <div id="v-week" style="display:none"></div>
+    <div id="v-month" style="display:none"></div>
+    <div id="v-calendar" style="display:none"></div>
+    <div id="v-events" style="display:none"></div>
+    <div id="v-meetings" style="display:none"></div>
+    <div id="v-deadlines" style="display:none"></div>
+    <div id="v-habits" style="display:none"></div>
+    <div id="v-high" style="display:none"></div>
+    <div id="v-medium" style="display:none"></div>
+    <div id="v-low" style="display:none"></div>
+    <div id="v-analytics" style="display:none"></div>
+    <div id="v-heatmap" style="display:none"></div>
+    <div id="v-focus" style="display:none"></div>
+  </div>
+</div>
+</div>
+<div class="ov" id="ov">
+  <div class="modal">
+    <h3>Delete task?</h3><p>This cannot be undone.</p>
+    <div class="modal-btns">
+      <button class="btn btn-g" onclick="closeMod()">Cancel</button>
+      <button class="btn btn-ro" id="cdel">Delete</button>
+    </div>
+  </div>
+</div>
+<div id="toast"></div>
+<div id="footer-placeholder"></div>
+
+      </div>
+ <script src="app.js"></script>
+  <script src="components.js"></script>
+</body>
+</html>
